@@ -58,13 +58,13 @@ public class DeckController : MonoBehaviour
         string answer;
 
 
-        if ((near && G.curentDiagnosis.diseases[(int)Diseases.Stigmatizm_plus]) || (!near && G.curentDiagnosis.diseases[(int)Diseases.Stigmatizm_minus]))
+        if ((near && G.curentDiagnosis.diseases[(int)Diseases.LongRange]) || (!near && G.curentDiagnosis.diseases[(int)Diseases.ShortRange]))
         {
             answer = "Не вижу";
         }
         else
         {
-            answer = G.curentDiagnosis.diseases[(int)Diseases.Vitamins] ? falseDic[deckLetter] : trueDic[deckLetter];
+            answer = G.curentDiagnosis.diseases[(int)Diseases.Focus] ? falseDic[deckLetter] : trueDic[deckLetter];
         }
         Debug.Log(answer);
 

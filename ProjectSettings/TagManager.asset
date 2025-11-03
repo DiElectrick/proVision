@@ -51,6 +51,12 @@ TagManager:
   - name: loopVisible
     uniqueID: 957854401
     locked: 0
+  - name: Instruments
+    uniqueID: 3941604449
+    locked: 0
+  - name: Nedarkw Layer 4
+    uniqueID: 294006059
+    locked: 0
   - name: UI
     uniqueID: 475087125
     locked: 0

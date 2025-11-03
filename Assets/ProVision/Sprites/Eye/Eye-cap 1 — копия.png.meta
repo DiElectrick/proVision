@@ -1,0 +1,650 @@
+fileFormatVersion: 2
+guid: 1ee97d2a5b7a46e4dbdeaf2e4d260e96
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6836728354043538731
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_0"
+  - first:
+      213: 4342454359781719691
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_1"
+  - first:
+      213: 8784223505195720820
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_2"
+  - first:
+      213: 1121892230118728181
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_3"
+  - first:
+      213: 8023827407933010573
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_4"
+  - first:
+      213: 3790777006808266739
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_5"
+  - first:
+      213: 1570680125135888918
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_6"
+  - first:
+      213: -8076830603928341951
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_7"
+  - first:
+      213: -7113303539611883974
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_8"
+  - first:
+      213: 8783444510638169885
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_9"
+  - first:
+      213: -6222651138602981746
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_10"
+  - first:
+      213: -1282655767406713595
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_11"
+  - first:
+      213: -4793490493043701126
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_12"
+  - first:
+      213: -7670432146173897671
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_13"
+  - first:
+      213: -1803849230625700435
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_14"
+  - first:
+      213: -9065519508433970748
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_15"
+  - first:
+      213: 7131177464441821244
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_16"
+  - first:
+      213: 3118493404423623188
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_17"
+  - first:
+      213: -8897373563712578578
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_18"
+  - first:
+      213: 2189224970018429218
+    second: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_19"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_0"
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 647
+        width: 31
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2d2b982730f0ee50800000000000000
+      internalID: 6836728354043538731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_1"
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 648
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8eb220ab3f734c30800000000000000
+      internalID: 4342454359781719691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_2"
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 543
+        width: 97
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470e3d6bcb4d7e970800000000000000
+      internalID: 8784223505195720820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_3"
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 615
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f16f7c0a03c19f00800000000000000
+      internalID: 1121892230118728181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_4"
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 578
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82f3e4f38c5a5f60800000000000000
+      internalID: 8023827407933010573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_5"
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 565
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f776817a9b8b9430800000000000000
+      internalID: 3790777006808266739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_6"
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 556
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 612ad72804d2cc510800000000000000
+      internalID: 1570680125135888918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_7"
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 548
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142f8ddcb5559ef80800000000000000
+      internalID: -8076830603928341951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_8"
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 525
+        width: 51
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36a7ed5e18784d90800000000000000
+      internalID: -7113303539611883974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_9"
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 532
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1f51f8ee3015e970800000000000000
+      internalID: 8783444510638169885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_10"
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 439
+        width: 44
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e86a36a22c3b4a9a0800000000000000
+      internalID: -6222651138602981746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_11"
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 391
+        width: 60
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505ed961067133ee0800000000000000
+      internalID: -1282655767406713595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_12"
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 400
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7a0be72bc91a7db0800000000000000
+      internalID: -4793490493043701126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_13"
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 399
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 934519d4a962d8590800000000000000
+      internalID: -7670432146173897671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_14"
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 389
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da581349ea077f6e0800000000000000
+      internalID: -1803849230625700435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_15"
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 368
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c95b6bc90ec03280800000000000000
+      internalID: -9065519508433970748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_16"
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 274
+        width: 64
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c38535e0f1807f260800000000000000
+      internalID: 7131177464441821244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_17"
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 236
+        width: 95
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41291159a3d174b20800000000000000
+      internalID: 3118493404423623188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_18"
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 291
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eebd5f452ed268480800000000000000
+      internalID: -8897373563712578578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_19"
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 248
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2291d5fd280b16e10800000000000000
+      internalID: 2189224970018429218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_0": 6836728354043538731
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_1": 4342454359781719691
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_10": -6222651138602981746
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_11": -1282655767406713595
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_12": -4793490493043701126
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_13": -7670432146173897671
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_14": -1803849230625700435
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_15": -9065519508433970748
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_16": 7131177464441821244
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_17": 3118493404423623188
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_18": -8897373563712578578
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_19": 2189224970018429218
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_2": 8784223505195720820
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_3": 1121892230118728181
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_4": 8023827407933010573
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_5": 3790777006808266739
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_6": 1570680125135888918
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_7": -8076830603928341951
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_8": -7113303539611883974
+      "Eye-cap 1 \u2014 \u043A\u043E\u043F\u0438\u044F_9": 8783444510638169885
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

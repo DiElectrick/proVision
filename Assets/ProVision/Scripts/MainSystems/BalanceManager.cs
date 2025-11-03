@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +13,18 @@ public class BalanceManager : MonoBehaviour
     [SerializeField] int neutralPrize = 10;
     [SerializeField] int neutralFine = -10;
 
+    Diseases[] progression = new Diseases[] {
+        Diseases.Capillaries,
+        Diseases.Rotation,
+        Diseases.Focus,
+        Diseases.Double,
+        Diseases.LongRange,
+        Diseases.ShortRange
+    };
+
+
+    List<Diseases> allDisasesList = new List<Diseases>();
+
     // Переменные для квоты
     private int currentQuota = 0;
     private int daysUntilNextQuota = 0;
@@ -21,12 +32,36 @@ public class BalanceManager : MonoBehaviour
     private GameProcess gameProcess;
     private GameSession session;
 
+    private void Awake()
+    {
+        for (int i = 0; i < Enum.GetNames(typeof(Diseases)).Length; i++)
+        {
+            allDisasesList.Add((Diseases)i);
+        }
+    }
+
     private void Start()
     {
         gameProcess = G.process;
         session = G.curentSession;
 
         InitializeQuotaSystem();
+    }
+
+    public int DiseasesNum(int dayN)
+    {
+        if (dayN <= 6) return 1;
+        else return 2;
+    }
+
+    public List<Diseases> AvailableDiseases(int daysN)
+    {
+        List<Diseases> list = new List<Diseases>();
+        for (int i = 0; i < daysN; i++)
+        {
+            list.Add(progression[i]);
+        }
+        return list;
     }
 
     private void InitializeQuotaSystem()

@@ -4,10 +4,12 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float roundTime = 60f;
+    [SerializeField] float soundTime = 10f;
     [SerializeField] private TextMeshProUGUI timerText;
 
     private float currentTime;
     private bool isRunning = false;
+    bool isTimerSounded = false;
 
     public delegate void TimerExpiredHandler();
     public event TimerExpiredHandler OnTimerExpired;
@@ -23,6 +25,11 @@ public class Timer : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             UpdateTimerDisplay();
+
+            if (currentTime <= soundTime && !isTimerSounded) {
+                isTimerSounded = true;
+                AudioManager.Instance.PlayTimerSound();
+            }
 
             if (currentTime <= 0)
             {
@@ -53,6 +60,7 @@ public class Timer : MonoBehaviour
     public void ResetTimer()
     {
         currentTime = roundTime;
+        isTimerSounded = false;
         UpdateTimerDisplay();
     }
 

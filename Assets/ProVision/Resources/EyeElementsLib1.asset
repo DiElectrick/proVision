@@ -22,7 +22,12 @@ MonoBehaviour:
   - {fileID: 7553710762264410233, guid: b9c68f7f59043ef4d8075769ed3d8a6e, type: 3}
   pupilPrefabs:
   - {fileID: 2240561159034460945, guid: 3085fe410946f084a8e95a8ca2d44aff, type: 3}
-  headsPrefabs: []
+  headsPrefabs:
+  - {fileID: 5304065721497802074, guid: a7b183ebd4246294db756db57cd3de01, type: 3}
+  - {fileID: 3955619728944436018, guid: 66284422d6d3a6648bff9fb69a810deb, type: 3}
+  - {fileID: 5534360354966926024, guid: cd5e6fcf678266f4db59d1dc39043ac9, type: 3}
+  - {fileID: 2580989860796915865, guid: c330e1219c8260b4dbf92cd7ff0e4acd, type: 3}
+  - {fileID: 7990408674481924182, guid: da8e569706ce71349a63729f24507b30, type: 3}
   footsPrefabs:
   - {fileID: 8110828734552864574, guid: 9488e9deed679f0498b9977c55ae04d7, type: 3}
   vensPrefabs: {fileID: 1180009077239362905, guid: fa82c0f52ac60284ab21cba492e86ae9, type: 3}

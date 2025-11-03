@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Diseases { 
-    Stigmatizm_plus,
-    Stigmatizm_minus,
+public enum Diseases {
+    LongRange,
+    ShortRange,
     Capillaries,
-    Vitamins,
+    Double,
     Rotation,
-    Scale
+    Focus
 }
 
 //[CreateAssetMenu(fileName = "Diagnosis", menuName = "Scriptable Objects/Diagnosis")]

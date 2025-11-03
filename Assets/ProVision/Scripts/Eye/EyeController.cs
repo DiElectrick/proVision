@@ -38,7 +38,7 @@ public class EyeController : MonoBehaviour
     {
         float dist = NearestLightDistance();
         float scale;
-        if (diagnosis.diseases[(int)Diseases.Scale])
+        if (diagnosis.diseases[(int)Diseases.Focus])
         {
             scale = minScaleDisease + ((maxScaleDisease - minScaleDisease) * Mathf.Min(1f, dist/maxScaleDistanceDisease));
         }

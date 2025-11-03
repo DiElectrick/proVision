@@ -8,4 +8,8 @@ public static class G
     public static TextPanel textPanel;
     public static bool isRunning = true;
 
+    public static bool tutorialIsActive = true;
+
+    public static VerdictUIController verdictController;
+
 }

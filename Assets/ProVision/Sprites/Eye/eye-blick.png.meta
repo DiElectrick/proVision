@@ -116,37 +116,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: eye-blick_0
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 464
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e32c61a12f425c7c0800000000000000
-      internalID: -4051791667511508418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: eye-blick_1
       rect:
         serializedVersion: 2
-        x: 262
-        y: 490
-        width: 87
-        height: 89
+        x: 264
+        y: 492
+        width: 85
+        height: 87
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,7 +141,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: adb98b6b8c5578a499ecc5d436cbe322
     internalID: 0
     vertices: []
     indices: 

@@ -19,9 +19,9 @@ public class EyeController : MonoBehaviour
     [SerializeField] float minScale;
 
     [Header("Disease scale")]
-    [SerializeField] float maxScaleDistanceRandomRange = 0.1f;
-    [SerializeField] float maxScaleRandomRange = 0.1f;
-    [SerializeField] float minScaleRandomRange = 0.1f;
+    [SerializeField] float maxScaleDistanceDisease;
+    [SerializeField] float maxScaleDisease;
+    [SerializeField] float minScaleDisease;
 
     [SerializeField] public Diagnosis diagnosis = new Diagnosis();
 
@@ -34,14 +34,23 @@ public class EyeController : MonoBehaviour
 
     }
 
-    void ScaleEye() {
+    void ScaleEye()
+    {
         float dist = NearestLightDistance();
-        float scale = minScale + ((maxScale - minScale) * Mathf.Min(1f, dist / maxScaleDistance));
+        float scale;
+        if (diagnosis.diseases[(int)Diseases.Scale])
+        {
+            scale = minScaleDisease + ((maxScaleDisease - minScaleDisease) * Mathf.Min(1f, dist/maxScaleDistanceDisease));
+        }
+        else
+        {
+            scale = minScale + ((maxScale - minScale) * Mathf.Min(1f, dist / maxScaleDistance));
+        }
 
-        pupil.transform.localScale = new Vector2(scale,scale);
+        pupil.transform.localScale = new Vector2(scale, scale);
     }
 
-  
+
 
     float NearestLightDistance()
     {
@@ -64,11 +73,12 @@ public class EyeController : MonoBehaviour
                 nearestLight = lightObj;
             }
         }
-        
+
         return closestDistance;
     }
 
-    void RotateEye() {
+    void RotateEye()
+    {
 
         if (!diagnosis.diseases[(int)Diseases.Rotation]) mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         else mousePos = cursorFolower.position;

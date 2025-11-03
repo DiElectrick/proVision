@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectDragger : MonoBehaviour
 {
@@ -19,14 +20,23 @@ public class ObjectDragger : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            TrySelectObject();
+            // Проверяем, не кликнули ли мы по UI элементу
+            if (!IsPointerOverUI())
+            {
+                TrySelectObject();
+            }
         }
-
 
         if (Input.GetMouseButtonUp(0) && isDragging)
         {
             ReleaseObject();
         }
+    }
+
+    // Проверка, находится ли курсор над UI элементом
+    private bool IsPointerOverUI()
+    {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
     }
 
     void TrySelectObject()

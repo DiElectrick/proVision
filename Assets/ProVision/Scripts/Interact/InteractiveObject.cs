@@ -15,7 +15,10 @@ public class InteractiveObject : MonoBehaviour
     private Rigidbody2D rb;
     private bool isBeingDragged = false;
 
-
+    public float rotationSpeed = 2f;        // Скорость поворота
+    public float maxAngularVelocity = 90f;  // Максимальная угловая скорость
+    public float torqueForce = 100f;        // Сила крутящего момента
+    public float targetRotationAngle;       // Целевой угол оворота              
 
     void Start()
     {
@@ -61,10 +64,25 @@ public class InteractiveObject : MonoBehaviour
 
         if (dist < 0.001f) return;
 
-        rb.linearVelocity = dir.normalized * maxSpeed * Mathf.Min(1f, dist/maxDistance);
+        rb.linearVelocity = dir.normalized * maxSpeed * Mathf.Min(1f, dist / maxDistance);
 
 
 
+    }
+
+    void ApplyRotation()
+    {
+        // Текущий угол объекта
+        float currentAngle = rb.rotation;
+
+        // Вычисляем кратчайшую разницу между углами
+        float angleDifference = Mathf.DeltaAngle(currentAngle, targetRotationAngle);
+
+        // Вычисляем угловую скорость на основе разницы углов
+        float targetAngularVelocity = Mathf.Clamp(angleDifference * rotationSpeed, -maxAngularVelocity, maxAngularVelocity);
+
+        // Плавно интерполируем к целевой угловой скорости
+        rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, targetAngularVelocity, torqueForce * Time.fixedDeltaTime);
     }
 
     void FixedUpdate()
@@ -72,8 +90,10 @@ public class InteractiveObject : MonoBehaviour
         if (isBeingDragged)
         {
             UpdateDragPosition();
+            ApplyRotation();
         }
-        else {
+        else
+        {
             rb.linearVelocityY -= gravityScale * Time.deltaTime;
         }
 

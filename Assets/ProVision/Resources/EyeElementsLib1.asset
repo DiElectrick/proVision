@@ -17,10 +17,13 @@ MonoBehaviour:
   - {fileID: 1718731713671624263, guid: d5c3b821689288f4582defb794aa75ff, type: 3}
   rainbowPrefabs:
   - {fileID: 8391394826468576439, guid: 97e26100aa831a141bbbab0141fd43bc, type: 3}
+  - {fileID: 8320310148525695657, guid: dbc693e7a7b62c14d9dea413efa37f17, type: 3}
+  - {fileID: 8907444391360174298, guid: a3e31dc165c4cfd47a090f5f8a779002, type: 3}
+  - {fileID: 7553710762264410233, guid: b9c68f7f59043ef4d8075769ed3d8a6e, type: 3}
   pupilPrefabs:
   - {fileID: 2240561159034460945, guid: 3085fe410946f084a8e95a8ca2d44aff, type: 3}
   headsPrefabs: []
   footsPrefabs:
   - {fileID: 8110828734552864574, guid: 9488e9deed679f0498b9977c55ae04d7, type: 3}
-  vensPrefabs: {fileID: 5598988605849722494, guid: 0aa617f4ec5a2424ba5cf04310dead3f, type: 3}
+  vensPrefabs: {fileID: 1180009077239362905, guid: fa82c0f52ac60284ab21cba492e86ae9, type: 3}
   vensPrefabsDisease: {fileID: 5914218631787157934, guid: 1efdfb548987b0d4b8b81092bf1a238d, type: 3}

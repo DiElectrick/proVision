@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,8 @@ public class GameProcess : MonoBehaviour
 
     [SerializeField] Timer timer;
     [SerializeField] FinalePanelUIController statsPanel;
+
+    [SerializeField] DoorAnimator doorAnimator;
 
     // Переменные для хранения статистики за день
     private int dailyPrize = 0;
@@ -112,7 +115,9 @@ public class GameProcess : MonoBehaviour
     void NewPacient()
     {
         curentDiagnosis = GenerateDiagnosis(allDisasesList, 2);
-        GenerateEye();
+        G.curentDiagnosis = curentDiagnosis;
+        StartCoroutine(GeneratorCoroutine());
+        //GenerateEye();
     }
 
     Diagnosis GenerateDiagnosis(List<Diseases> availableDiseases1, int diseasesNum)
@@ -170,12 +175,26 @@ public class GameProcess : MonoBehaviour
         return diagnosis;
     }
 
+    IEnumerator GeneratorCoroutine() {
+        doorAnimator.AnimateSprite(curentEye.transform, true);
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        GenerateEye();
+        
+        doorAnimator.AnimateSprite(curentEye.transform, false);
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
     void GenerateEye()
     {
+
         foreach (Transform child in curentEye.transform)
         {
-            Destroy(child.gameObject);
+           if(child.gameObject.tag != "notDelete") Destroy(child.gameObject);
         }
+
 
         if (lib.applePrefabs.Count > 0)
             Instantiate(lib.applePrefabs[UnityEngine.Random.Range(0, lib.applePrefabs.Count)],
@@ -206,7 +225,7 @@ public class GameProcess : MonoBehaviour
             curentEye.transform);
 
 
-            GameObject vens = Instantiate(curentDiagnosis.diseases[(int)Diseases.Vitamins]? lib.vensPrefabsDisease:lib.vensPrefabs,
+            GameObject vens = Instantiate(curentDiagnosis.diseases[(int)Diseases.Capillaries]? lib.vensPrefabsDisease:lib.vensPrefabs,
             curentEye.transform);
             controller.capilares = vens;
         

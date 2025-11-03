@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc48a5e235096a748825ed149b601ac8, type: 3}
+  m_Name: EyeElementsLib1
+  m_EditorClassIdentifier: Assembly-CSharp::EyeElementsLib
+  eyePrefab: {fileID: 0}
+  applePrefabs:
+  - {fileID: 1718731713671624263, guid: d5c3b821689288f4582defb794aa75ff, type: 3}
+  rainbowPrefabs:
+  - {fileID: 8391394826468576439, guid: 97e26100aa831a141bbbab0141fd43bc, type: 3}
+  pupilPrefabs:
+  - {fileID: 2240561159034460945, guid: 3085fe410946f084a8e95a8ca2d44aff, type: 3}
+  headsPrefabs: []
+  footsPrefabs:
+  - {fileID: 8110828734552864574, guid: 9488e9deed679f0498b9977c55ae04d7, type: 3}
+  vensPrefabs: {fileID: 5598988605849722494, guid: 0aa617f4ec5a2424ba5cf04310dead3f, type: 3}
+  vensPrefabsDisease: {fileID: 5914218631787157934, guid: 1efdfb548987b0d4b8b81092bf1a238d, type: 3}

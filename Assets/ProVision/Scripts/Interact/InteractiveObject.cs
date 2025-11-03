@@ -37,7 +37,6 @@ public class InteractiveObject : MonoBehaviour
 
         isBeingDragged = true;
 
-        Debug.Log("Started dragging: " + gameObject.name);
     }
 
 
@@ -47,7 +46,7 @@ public class InteractiveObject : MonoBehaviour
 
         isBeingDragged = false;
 
-        Debug.Log("Stopped dragging: " + gameObject.name);
+
     }
 
     public void UpdateDragPosition()

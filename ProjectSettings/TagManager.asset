@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Light
+  - stat
+  - loopAndApple
   layers:
   - Default
   - TransparentFX
@@ -40,6 +43,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: appleVisible
+    uniqueID: 1884508907
+    locked: 0
+  - name: loopVisible
+    uniqueID: 957854401
+    locked: 0
+  - name: UI
+    uniqueID: 475087125
     locked: 0
   m_RenderingLayers:
   - Default

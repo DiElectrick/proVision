@@ -13,6 +13,10 @@ public class BalanceManager : MonoBehaviour
     [SerializeField] int neutralPrize = 10;
     [SerializeField] int neutralFine = -10;
 
+    [SerializeField] GameObject loop;
+    [SerializeField] GameObject deck;
+    [SerializeField] GameObject lamp;
+
     Diseases[] progression = new Diseases[] {
         Diseases.Capillaries,
         Diseases.Rotation,

@@ -1,17 +1,16 @@
+/*
+ 
 
-using System;
+
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameProcess : MonoBehaviour
 {
-    Diagnosis curentDiagnosis = new Diagnosis();
-    [SerializeField] GameObject curentEye;
-    EyeController controller;
-    [SerializeField] EyeElementsLib lib;
-
-    List<Diseases> allDisasesList = new List<Diseases>();
 
     GameSession session;
 
@@ -19,29 +18,32 @@ public class GameProcess : MonoBehaviour
     [SerializeField] FinalePanelUIController statsPanel;
     [SerializeField] DoorAnimator doorAnimator;
 
-    // Переменные для хранения статистики за день
+
     private int dailyPrize = 0;
     private int dailyFine = 0;
     private int dailyPacients = 0;
 
-    private BalanceManager balanceManager;
 
-    private void Awake()
-    {
-        for (int i = 0; i < Enum.GetNames(typeof(Diseases)).Length; i++)
-        {
-            allDisasesList.Add((Diseases)i);
-        }
-    }
+    private BalanceManager balanceManager;
+    private EyeGenerator eyeGenerator;
+    private TutorialController tutorController;
+
+    Transform curentEye;
+
+
+    Diagnosis curentDiagnosis = new Diagnosis();
 
     private void Start()
     {
         G.process = this;
-
-        controller = curentEye.GetComponent<EyeController>();
         session = G.curentSession;
         timer = GetComponent<Timer>();
-        balanceManager = GetComponent<BalanceManager>(); // или FindObjectOfType<BalanceManager>()
+        balanceManager = GetComponent<BalanceManager>();
+        eyeGenerator = GetComponent<EyeGenerator>();
+        tutorController = GetComponent<TutorialController>();
+
+        curentEye = eyeGenerator.curentEye.transform;
+
 
         if (session == null)
         {
@@ -54,7 +56,9 @@ public class GameProcess : MonoBehaviour
             timer.OnTimerExpired += OnTimerExpired;
         }
 
-        NextDay();
+        doorAnimator.HideInstantly();
+
+        //NextDay();
     }
 
     private void OnDestroy()
@@ -78,12 +82,22 @@ public class GameProcess : MonoBehaviour
                            session.curentMoney, quotaInfo.daysUntilNextQuota, quotaInfo.currentQuota);
     }
 
-    public void NextDay()
+    public void NextDay() {
+        StartCoroutine(NextDayCoroutine());
+    }
+
+    public IEnumerator NextDayCoroutine()
     {
         AudioManager.Instance.PlayRandomMusic();
 
         session.curentDay++;
-        // Сбрасываем статистику за день
+
+        TutorialInfo tutorial = balanceManager.Tutorial(session.curentDay);
+
+        if (tutorial != null && G.tutorialIsActive && G.tutorialProgress < session.curentDay) {
+            yield return TutorialController.Instance.TutorialPlay(tutorial);
+        }
+
         dailyPrize = 0;
         dailyFine = 0;
         dailyPacients = 0;
@@ -98,31 +112,23 @@ public class GameProcess : MonoBehaviour
 
     void NewPacient()
     {
-        if (G.tutorialIsActive) {
-            curentDiagnosis = GenerateDiagnosis(balanceManager.AvailableDiseases(session.curentDay), balanceManager.DiseasesNum(session.curentDay));
-        }
-        else {
-            curentDiagnosis = GenerateDiagnosis(allDisasesList, balanceManager.DiseasesNum(7));
-        }
-            
+        curentDiagnosis = GenerateDiagnosis(balanceManager.AvailableDiseases(session.curentDay), balanceManager.DiseasesNum(session.curentDay));
 
         G.curentDiagnosis = curentDiagnosis;
-        StartCoroutine(GeneratorCoroutine());
+
+        eyeGenerator.GenerateEye(curentDiagnosis);
+        AudioManager.Instance.PlayDoorSound();
+        doorAnimator.AnimateSprite(false);
     }
 
     Diagnosis GenerateDiagnosis(List<Diseases> availableDiseases1, int diseasesNum)
     {
         Diagnosis diagnosis = new Diagnosis();
-
-        // Создаем копию списка
         List<Diseases> availableDiseases = new List<Diseases>(availableDiseases1);
 
         G.verdictController.SetVariants(availableDiseases);
 
         int n = UnityEngine.Random.Range(0, diseasesNum + 1);
-        Debug.Log($"Trying to generate {n} diseases from {availableDiseases.Count} available");
-
-        // Ограничиваем n размером доступного списка
         n = Mathf.Min(n, availableDiseases.Count);
 
         List<Diseases> selectedDiseases = new List<Diseases>();
@@ -164,67 +170,9 @@ public class GameProcess : MonoBehaviour
             }
         }
 
+
+
         return diagnosis;
-    }
-
-    IEnumerator GeneratorCoroutine()
-    {
-        doorAnimator.AnimateSprite(curentEye.transform, true);
-
-        yield return new WaitForSeconds(0.5f);
-
-        GenerateEye();
-
-        AudioManager.Instance.PlayDoorSound();
-
-        doorAnimator.AnimateSprite(curentEye.transform, false);
-
-        yield return new WaitForSeconds(0.5f);
-    }
-
-    void GenerateEye()
-    {
-
-        foreach (Transform child in curentEye.transform)
-        {
-            if (child.gameObject.tag != "notDelete") Destroy(child.gameObject);
-        }
-
-
-        if (lib.applePrefabs.Count > 0)
-            Instantiate(lib.applePrefabs[UnityEngine.Random.Range(0, lib.applePrefabs.Count)],
-            curentEye.transform);
-
-        if (lib.rainbowPrefabs.Count > 0)
-        {
-            GameObject rainbow = Instantiate(lib.rainbowPrefabs[UnityEngine.Random.Range(0, lib.rainbowPrefabs.Count)],
-            curentEye.transform);
-
-            controller.rainbow = rainbow;
-        }
-
-        if (lib.pupilPrefabs.Count > 0)
-        {
-            GameObject pupil = Instantiate(lib.pupilPrefabs[UnityEngine.Random.Range(0, lib.pupilPrefabs.Count)],
-            curentEye.transform);
-
-            controller.pupil = pupil;
-        }
-
-        if (lib.headsPrefabs.Count > 0)
-            Instantiate(lib.headsPrefabs[UnityEngine.Random.Range(0, lib.headsPrefabs.Count)],
-                curentEye.transform);
-
-        if (lib.footsPrefabs.Count > 0)
-            Instantiate(lib.footsPrefabs[UnityEngine.Random.Range(0, lib.footsPrefabs.Count)],
-            curentEye.transform);
-
-
-        GameObject vens = Instantiate(curentDiagnosis.diseases[(int)Diseases.Capillaries] ? lib.vensPrefabsDisease : lib.vensPrefabs,
-        curentEye.transform);
-        controller.capilares = vens;
-
-        controller.diagnosis = curentDiagnosis;
     }
 
     public void SendDiagnosis(Diagnosis diagnosis)
@@ -246,6 +194,6 @@ public class GameProcess : MonoBehaviour
         NewPacient();
     }
 
-    // GenerateDiagnosis, GeneratorCoroutine, GenerateEye методы остаются без изменений
+
 }
 

@@ -9,6 +9,7 @@ public static class G
     public static bool isRunning = true;
 
     public static bool tutorialIsActive = true;
+    public static int tutorialProgress = 0;
 
     public static VerdictUIController verdictController;
 

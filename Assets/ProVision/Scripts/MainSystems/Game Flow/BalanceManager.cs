@@ -2,6 +2,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Diseases[] progression = new Diseases[] {
+//    Diseases.Capillaries,
+//    Diseases.Rotation,
+//    Diseases.Focus,
+//    Diseases.Double,
+//    Diseases.LongRange,
+//    Diseases.ShortRange
+//};
+
+
+[System.Serializable]
+public class DayBalanceData {
+    public List<Diseases> addedDiseases = new List<Diseases>();
+    public TutorialInfo tutorialInfo;
+    public int maxDiseasesNum;
+}
+
 public class BalanceManager : MonoBehaviour
 {
     [Header("Balance Settings")]
@@ -17,15 +34,7 @@ public class BalanceManager : MonoBehaviour
     [SerializeField] GameObject deck;
     [SerializeField] GameObject lamp;
 
-    Diseases[] progression = new Diseases[] {
-        Diseases.Capillaries,
-        Diseases.Rotation,
-        Diseases.Focus,
-        Diseases.Double,
-        Diseases.LongRange,
-        Diseases.ShortRange
-    };
-
+    [SerializeField] BalanceData balanceData;
 
     List<Diseases> allDisasesList = new List<Diseases>();
 
@@ -52,20 +61,26 @@ public class BalanceManager : MonoBehaviour
         InitializeQuotaSystem();
     }
 
+    public List<Diseases> AvailableDiseases(int dayN) { 
+        List<Diseases> list = new List<Diseases>(balanceData.daysData[dayN-1 < balanceData.daysData.Count ? dayN-1 : balanceData.daysData.Count - 1].addedDiseases);
+        return list;
+    }
+
+    public int MaxDiseasesNum(int dayN) {
+        if (dayN < balanceData.daysData.Count) return balanceData.daysData[dayN - 1].maxDiseasesNum;
+        else {
+            return balanceData.daysData[balanceData.daysData.Count - 1].maxDiseasesNum;
+        }
+    }
+
+    public TutorialInfo Tutorial(int dayN) { 
+        return balanceData.daysData[dayN-1].tutorialInfo;
+    }
+
     public int DiseasesNum(int dayN)
     {
         if (dayN <= 6) return 1;
         else return 2;
-    }
-
-    public List<Diseases> AvailableDiseases(int daysN)
-    {
-        List<Diseases> list = new List<Diseases>();
-        for (int i = 0; i < daysN; i++)
-        {
-            list.Add(progression[i]);
-        }
-        return list;
     }
 
     private void InitializeQuotaSystem()
@@ -139,8 +154,4 @@ public class BalanceManager : MonoBehaviour
         return (currentQuota, daysUntilNextQuota);
     }
 
-    public int GetPrize() => prize;
-    public int GetFine() => fine;
-    public int GetNeutralPrize() => neutralPrize;
-    public int GetNeutralFine() => neutralFine;
 }

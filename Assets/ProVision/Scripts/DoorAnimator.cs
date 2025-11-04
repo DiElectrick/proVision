@@ -4,15 +4,31 @@ using System.Collections.Generic;
 
 public class DoorAnimator : MonoBehaviour
 {
+    public static DoorAnimator Instance { get; private set; }
+
     [SerializeField] private float moveDistance = 2f;
     [SerializeField] private float duration = 1f;
     [SerializeField] private float fadeDur = 1f;
     [SerializeField] private Ease easeType = Ease.OutCubic;
+    [SerializeField] public Transform targetTransform;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Словарь для хранения исходной прозрачности объектов
     private Dictionary<Transform, Dictionary<SpriteRenderer, float>> originalAlphas = new Dictionary<Transform, Dictionary<SpriteRenderer, float>>();
 
-    public void AnimateSprite(Transform targetTransform, bool animateForward)
+    public void AnimateSprite(bool animateForward)
     {
         if (targetTransform == null) return;
 
@@ -64,6 +80,33 @@ public class DoorAnimator : MonoBehaviour
         }
 
         sequence.SetEase(easeType);
+    }
+
+    // Новый метод: мгновенно скрывает объект без анимации
+    public void HideInstantly()
+    {
+        if (targetTransform == null) return;
+
+        // Получаем все спрайт рендереры у самого объекта и у его детей
+        SpriteRenderer[] spriteRenderers = targetTransform.GetComponentsInChildren<SpriteRenderer>();
+        if (spriteRenderers.Length == 0) return;
+
+        // Сохраняем исходную прозрачность при первом скрытии
+        if (!originalAlphas.ContainsKey(targetTransform))
+        {
+            SaveOriginalAlphas(targetTransform, spriteRenderers);
+        }
+
+        // Мгновенно устанавливаем прозрачность в 0 для всех спрайтов
+        foreach (SpriteRenderer renderer in spriteRenderers)
+        {
+            Color color = renderer.color;
+            color.a = 0f;
+            renderer.color = color;
+        }
+
+        // Мгновенно скрываем объект (опционально - можно также изменить scale или position)
+        targetTransform.localScale = Vector3.zero;
     }
 
     // Метод для сохранения исходной прозрачности

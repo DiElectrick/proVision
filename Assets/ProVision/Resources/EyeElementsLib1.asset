@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc48a5e235096a748825ed149b601ac8, type: 3}
   m_Name: EyeElementsLib1
   m_EditorClassIdentifier: Assembly-CSharp::EyeElementsLib
-  eyePrefab: {fileID: 0}
+  eyePrefab: {fileID: 1112375686938904711, guid: 89e46ddcbf231a74abd9a333152f0893, type: 3}
   applePrefabs:
   - {fileID: 1718731713671624263, guid: d5c3b821689288f4582defb794aa75ff, type: 3}
   rainbowPrefabs:

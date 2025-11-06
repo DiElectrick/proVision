@@ -3,7 +3,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private float roundTime = 60f;
+    [SerializeField] private const float baseRoundTime = 60f;
     [SerializeField] float soundTime = 10f;
     [SerializeField] private TextMeshProUGUI timerText;
 
@@ -57,16 +57,16 @@ public class Timer : MonoBehaviour
         isRunning = false;
     }
 
-    public void ResetTimer()
+    public void ResetTimer(float roundTime = baseRoundTime)
     {
         currentTime = roundTime;
         isTimerSounded = false;
         UpdateTimerDisplay();
     }
 
-    public void ResetAndStartTimer()
+    public void ResetAndStartTimer(float roundTime = baseRoundTime)
     {
-        ResetTimer();
+        ResetTimer(roundTime);
         StartTimer();
     }
 

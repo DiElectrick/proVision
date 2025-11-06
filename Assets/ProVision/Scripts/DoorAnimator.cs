@@ -6,23 +6,22 @@ public class DoorAnimator : MonoBehaviour
 {
     public static DoorAnimator Instance { get; private set; }
 
-    [SerializeField] private float moveDistance = 2f;
+    [Header("Animation Settings")]
     [SerializeField] private float duration = 1f;
-    [SerializeField] private float fadeDur = 1f;
     [SerializeField] private Ease easeType = Ease.OutCubic;
     [SerializeField] public Transform targetTransform;
 
+    [Header("Show State")]
+    [SerializeField] private float showPositionY = 0f;
+    [SerializeField] private Vector3 showScale = Vector3.one * 0.6f;
+
+    [Header("Hide State")]
+    [SerializeField] private float hidePositionY = 2f;
+    [SerializeField] private Vector3 hideScale = Vector3.zero;
+
     private void Awake()
     {
-        if (Instance == null)
-        {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     // Словарь для хранения исходной прозрачности объектов
@@ -30,6 +29,8 @@ public class DoorAnimator : MonoBehaviour
 
     public void AnimateSprite(bool animateForward)
     {
+        Debug.Log("Animate");
+
         if (targetTransform == null) return;
 
         // Получаем все спрайт рендереры у самого объекта и у его детей
@@ -46,9 +47,9 @@ public class DoorAnimator : MonoBehaviour
 
         if (animateForward)
         {
-            // Прямая анимация: вверх + уменьшение + растворение всех спрайтов
-            sequence.Join(targetTransform.DOMoveY(targetTransform.position.y + moveDistance, duration));
-            sequence.Join(targetTransform.DOScale(Vector3.zero, duration));
+            // Прямая анимация: скрытие
+            sequence.Join(targetTransform.DOMoveY(hidePositionY, duration));
+            sequence.Join(targetTransform.DOScale(hideScale, duration));
 
             // Анимируем альфа-канал всех спрайт рендереров до 0
             foreach (SpriteRenderer renderer in spriteRenderers)
@@ -58,9 +59,9 @@ public class DoorAnimator : MonoBehaviour
         }
         else
         {
-            // Обратная анимация: возврат к исходному состоянию
-            sequence.Join(targetTransform.DOMoveY(targetTransform.position.y - moveDistance, duration));
-            sequence.Join(targetTransform.DOScale(Vector3.one * 0.6f, duration));
+            // Обратная анимация: показ
+            sequence.Join(targetTransform.DOMoveY(showPositionY, duration));
+            sequence.Join(targetTransform.DOScale(showScale, duration));
 
             // Возвращаем исходную прозрачность всем спрайтам
             foreach (SpriteRenderer renderer in spriteRenderers)
@@ -82,9 +83,11 @@ public class DoorAnimator : MonoBehaviour
         sequence.SetEase(easeType);
     }
 
-    // Новый метод: мгновенно скрывает объект без анимации
+    // Мгновенно скрывает объект
     public void HideInstantly()
     {
+
+
         if (targetTransform == null) return;
 
         // Получаем все спрайт рендереры у самого объекта и у его детей
@@ -97,16 +100,63 @@ public class DoorAnimator : MonoBehaviour
             SaveOriginalAlphas(targetTransform, spriteRenderers);
         }
 
-        // Мгновенно устанавливаем прозрачность в 0 для всех спрайтов
+        // Мгновенно применяем настройки скрытия
+        Vector3 newPosition = targetTransform.position;
+        newPosition.y = hidePositionY;
+        targetTransform.position = newPosition;
+
+        targetTransform.localScale = hideScale;
+
+        // Устанавливаем прозрачность в 0 для всех спрайтов
         foreach (SpriteRenderer renderer in spriteRenderers)
         {
             Color color = renderer.color;
             color.a = 0f;
             renderer.color = color;
         }
+    }
 
-        // Мгновенно скрываем объект (опционально - можно также изменить scale или position)
-        targetTransform.localScale = Vector3.zero;
+    // Мгновенно показывает объект
+    public void ShowInstantly()
+    {
+        if (targetTransform == null) return;
+
+        // Получаем все спрайт рендереры у самого объекта и у его детей
+        SpriteRenderer[] spriteRenderers = targetTransform.GetComponentsInChildren<SpriteRenderer>();
+        if (spriteRenderers.Length == 0) return;
+
+        // Сохраняем исходную прозрачность при первом использовании
+        if (!originalAlphas.ContainsKey(targetTransform))
+        {
+            SaveOriginalAlphas(targetTransform, spriteRenderers);
+        }
+
+        // Мгновенно применяем настройки показа
+        Vector3 newPosition = targetTransform.position;
+        newPosition.y = showPositionY;
+        targetTransform.position = newPosition;
+
+        targetTransform.localScale = showScale;
+
+        // Восстанавливаем исходную прозрачность всем спрайтам
+        foreach (SpriteRenderer renderer in spriteRenderers)
+        {
+            if (originalAlphas.ContainsKey(targetTransform) &&
+                originalAlphas[targetTransform].ContainsKey(renderer))
+            {
+                float originalAlpha = originalAlphas[targetTransform][renderer];
+                Color color = renderer.color;
+                color.a = originalAlpha;
+                renderer.color = color;
+            }
+            else
+            {
+                // Если по какой-то причине нет сохраненного значения, используем 1
+                Color color = renderer.color;
+                color.a = 1f;
+                renderer.color = color;
+            }
+        }
     }
 
     // Метод для сохранения исходной прозрачности
@@ -122,7 +172,7 @@ public class DoorAnimator : MonoBehaviour
         originalAlphas[targetTransform] = rendererAlphas;
     }
 
-    // Метод для принудительного обновления сохраненных прозрачностей (если нужно изменить извне)
+    // Метод для принудительного обновления сохраненных прозрачностей
     public void UpdateOriginalAlphas(Transform targetTransform)
     {
         if (targetTransform == null) return;
@@ -133,7 +183,7 @@ public class DoorAnimator : MonoBehaviour
         SaveOriginalAlphas(targetTransform, spriteRenderers);
     }
 
-    // Метод для очистки сохраненных данных (если объект уничтожается)
+    // Метод для очистки сохраненных данных
     public void ClearSavedAlphas(Transform targetTransform)
     {
         if (originalAlphas.ContainsKey(targetTransform))

@@ -109,7 +109,7 @@ public class BalanceManager : MonoBehaviour
         daysUntilNextQuota = dayByQouta;
     }
 
-    public int CalculateDiagnosisReward(Diagnosis playerDiagnosis, Diagnosis correctDiagnosis)
+    public int CalculateDiagnosisReward(Diagnosis playerDiagnosis, Diagnosis correctDiagnosis, ref bool error)
     {
         int patientPrize = 0;
         int patientFine = 0;
@@ -144,9 +144,16 @@ public class BalanceManager : MonoBehaviour
                     patientFine += neutralFine;
                 }
             }
+            Debug.Log(patientPrize);
+            Debug.Log(patientFine);
         }
 
-        return patientPrize + patientFine; // возвращаем общий результат
+
+
+        if (patientFine != 0) error = true;
+        else error = false;
+
+            return patientPrize + patientFine; // возвращаем общий результат
     }
 
     public (int currentQuota, int daysUntilNextQuota) GetQuotaInfo()

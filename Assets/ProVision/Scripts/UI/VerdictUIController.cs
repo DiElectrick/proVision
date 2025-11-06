@@ -65,6 +65,19 @@ public class VerdictUIController : MonoBehaviour
         }
     }
 
+    public void SetVariants(List<bool> list)
+    {
+
+        foreach (var toggle in toggles)
+        {
+            toggle.gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < toggles.Count; i++) {
+            toggles[i].gameObject.SetActive(list[i]);
+        }
+    }
+
     private void Update()
     {
         if (_visible && Input.GetKeyUp(KeyCode.Escape))
@@ -94,7 +107,7 @@ public class VerdictUIController : MonoBehaviour
         AudioManager.Instance.PlayUIShow();
     }
 
-    void Hide()
+    public void Hide()
     {
         _visible = false;
         _rectTransform.DOKill();

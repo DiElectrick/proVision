@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonClickSound;
     public AudioClip doorSound;
     public AudioClip timerSound;
+    public AudioClip loseSound;
 
     private AudioClip currentMusic;
     private bool isMusicPlaying = false;
@@ -146,6 +147,7 @@ public class AudioManager : MonoBehaviour
     public void PlayDoorSound() => PlaySFX(doorSound);
     public void PlayTimerSound() => PlaySFX(timerSound);
     public void PlayButtonClick() => PlaySFX(buttonClickSound);
+    public void PlayLoseSound() => PlaySFX(loseSound);
 
 
     // Для общих SFX

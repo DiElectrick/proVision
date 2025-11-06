@@ -47,7 +47,7 @@ public class EyeController : MonoBehaviour
             scale = minScale + ((maxScale - minScale) * Mathf.Min(1f, dist / maxScaleDistance));
         }
 
-        pupil.transform.localScale = new Vector2(scale, scale);
+        if(pupil!=null) pupil.transform.localScale = new Vector2(scale, scale);
     }
 
 
@@ -83,9 +83,15 @@ public class EyeController : MonoBehaviour
         if (!diagnosis.diseases[(int)Diseases.Rotation]) mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         else mousePos = cursorFolower.position;
 
-        rainbow.transform.localPosition = CalculateElementPosition(rainbowCircleKoef, rainbowMaxRange, mousePos - transform.position);
-        capilares.transform.localPosition = rainbow.transform.localPosition;
-        pupil.transform.localPosition = CalculateElementPosition(pupilCircleKoef, pupilMaxRange, mousePos - transform.position);
+        if (rainbow != null)
+        {
+
+            rainbow.transform.localPosition = CalculateElementPosition(rainbowCircleKoef, rainbowMaxRange, mousePos - transform.position);
+            capilares.transform.localPosition = rainbow.transform.localPosition;
+            pupil.transform.localPosition = CalculateElementPosition(pupilCircleKoef, pupilMaxRange, mousePos - transform.position);
+
+
+        }
     }
 
     Vector3 CalculateElementPosition(float circleKoef, float maxRange, Vector3 dir)

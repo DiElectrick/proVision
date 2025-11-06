@@ -3,47 +3,53 @@ using UnityEngine;
 
 public class TutorialController : MonoBehaviour
 {
-
+    public bool tutorialIsGoing = false;
     public static TutorialController Instance { get; private set; }
+
+    public void StartTutorial(TutorialInfo tutorial)
+    {
+        StartCoroutine(TutorialPlay(tutorial));
+    }
+
+    public void StopTutorial()
+    {
+        StopAllCoroutines();
+        ArrowManager.Instance.HideAllArrows();
+        G.textPanel.ShowText("Теперь попробуй сам", 2f);
+    }
 
     public IEnumerator TutorialPlay(TutorialInfo tutorial)
     {
-        if(tutorial == null) yield break;
+        if (tutorial == null) yield break;
 
-        DoorAnimator.Instance.HideInstantly();
+        Debug.Log("Start tut");
 
-        if (tutorial.diagnosis != null) {
-            EyeGenerator.Instance.GenerateEye(tutorial.diagnosis);
-            DoorAnimator.Instance.AnimateSprite(false);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        for (int i = 0; i < tutorial.tutorialSteps.Length; i++) { 
+        for (int i = 0; i < tutorial.tutorialSteps.Count; i++)
+        {
             var step = tutorial.tutorialSteps[i];
             if (step == null) continue;
 
-            step.arrow.SetActive(true);
+            if (step.arrow != Arrows.None) ArrowManager.Instance.ShowArrow(step.arrow);
+
+            if (step.message != "")
+            {
+                G.textPanel.ShowText(step.message, step.duration - 0.5f);
+            }
 
             yield return new WaitForSeconds(step.duration);
 
-            step.arrow.SetActive(false);
+            if (step.arrow != Arrows.None) ArrowManager.Instance.HideArrow(step.arrow);
 
         }
+
+        StopTutorial();
 
 
     }
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Instance = this;
     }
 }

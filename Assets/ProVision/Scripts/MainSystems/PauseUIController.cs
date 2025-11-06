@@ -25,10 +25,15 @@ public class PauseUIController : MonoBehaviour
 
     }
 
-    void TutorialChanger(bool value) { 
+    void TutorialChanger(bool value)
+    {
         G.tutorialIsActive = value;
-    }
+        if (value == true)
+        {
+            G.tutorialProgress = 0;
 
+        }
+    }
     void MusicSetValue(float value)
     {
         AudioManager.Instance.SetMusicVolume(value);

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb69077cea39e64b9987a47d0028f65, type: 3}
+  m_Name: BalanceData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceData
+  daysData:
+  - addedDiseases: 02000000
+    tutorialInfo: {fileID: 11400000, guid: 47132f4f168ab8946b4c63a23be4a104, type: 2}
+    maxDiseasesNum: 1
+  - addedDiseases: 0200000004000000
+    tutorialInfo: {fileID: 11400000, guid: 369260f0282256b4e8cd8244feb3ff7e, type: 2}
+    maxDiseasesNum: 1
+  - addedDiseases: 020000000400000005000000
+    tutorialInfo: {fileID: 11400000, guid: 3e9a9fed29226dd4d98bd4d15f81fc19, type: 2}
+    maxDiseasesNum: 2
+  - addedDiseases: 02000000040000000500000003000000
+    tutorialInfo: {fileID: 11400000, guid: e1f9579890d1ec441a8acf23d1a029ec, type: 2}
+    maxDiseasesNum: 2
+  - addedDiseases: 0200000004000000050000000300000001000000
+    tutorialInfo: {fileID: 11400000, guid: 07c2561a2103de94a8551d76f0031f5d, type: 2}
+    maxDiseasesNum: 2
+  - addedDiseases: 020000000400000005000000030000000100000000000000
+    tutorialInfo: {fileID: 11400000, guid: 5edb4e4e59863794980ad9a6b2cf3a17, type: 2}
+    maxDiseasesNum: 2
+  - addedDiseases: 020000000400000005000000030000000100000000000000
+    tutorialInfo: {fileID: 11400000, guid: 5edb4e4e59863794980ad9a6b2cf3a17, type: 2}
+    maxDiseasesNum: 3

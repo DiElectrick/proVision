@@ -12,16 +12,20 @@ public class FinalePanelUIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI totalText;
     [SerializeField] TextMeshProUGUI quotaDaysText;
     [SerializeField] TextMeshProUGUI quotaValueText;
+    [SerializeField] TextMeshProUGUI dayLoseText;
 
     [SerializeField] GameObject[] stats;
     [SerializeField] private float delayBetween = 0.2f;
     [SerializeField] float popDuration = 0.1f;
     [SerializeField] private float animationDuration = 0.3f;
+    [SerializeField] GameObject losePanel;
 
     private RectTransform _rectTransform;
     private Vector2 _shownPosition;
     private Vector2 _hiddenPosition;
     private bool _visible = false;
+
+
 
     private void Awake()
     {
@@ -30,6 +34,8 @@ public class FinalePanelUIController : MonoBehaviour
 
     private void Start()
     {
+        losePanel.SetActive(false);
+
         _rectTransform = GetComponent<RectTransform>();
         _shownPosition = _rectTransform.anchoredPosition;
 
@@ -46,6 +52,14 @@ public class FinalePanelUIController : MonoBehaviour
 
     public void ShowStats(int day, int pacients, int prize, int fine, int total, int dayUntillQuota, int nextQuota)
     {
+
+        if (dayUntillQuota == 3 && total < 0)
+        {
+            losePanel.SetActive(true);
+            dayLoseText.text = $"Δενό {day}";
+            AudioManager.Instance.PlayLoseSound();
+            return;
+        }
         pacientsText.text = $"{pacients}";
         prizeText.text = $"{prize}";
         fineText.text = $"{fine}";

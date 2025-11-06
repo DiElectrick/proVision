@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameProcess : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameProcess : MonoBehaviour
     private int dailyFine = 0;
     private int dailyPacients = 0;
 
+    bool tutorialIsGoing = false;
 
     private BalanceManager balanceManager;
     private EyeGenerator eyeGenerator;
@@ -30,6 +32,7 @@ public class GameProcess : MonoBehaviour
 
     Transform curentEye;
 
+    bool error = false;
 
     Diagnosis curentDiagnosis = new Diagnosis();
 
@@ -41,7 +44,6 @@ public class GameProcess : MonoBehaviour
         balanceManager = GetComponent<BalanceManager>();
         eyeGenerator = GetComponent<EyeGenerator>();
         tutorController = GetComponent<TutorialController>();
-
         curentEye = eyeGenerator.curentEye.transform;
 
 
@@ -58,7 +60,12 @@ public class GameProcess : MonoBehaviour
 
         doorAnimator.HideInstantly();
 
-        //NextDay();
+        NextDay();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnDestroy()
@@ -80,52 +87,150 @@ public class GameProcess : MonoBehaviour
         statsPanel.Show();
         statsPanel.ShowStats(session.curentDay, dailyPacients, dailyPrize, dailyFine,
                            session.curentMoney, quotaInfo.daysUntilNextQuota, quotaInfo.currentQuota);
+        
+        StartCoroutine(costCor2());
+
     }
 
-    public void NextDay() {
+    public void NextDay()
+    {
         StartCoroutine(NextDayCoroutine());
     }
 
-    public IEnumerator NextDayCoroutine()
+    IEnumerator FourCoroutine()
     {
+
+        G.textPanel.ShowText("Твой рабочий день увеличен");
+        yield return new WaitForSeconds(4);
+    }
+
+    IEnumerator ErrorCoroutine()
+    {
+
+        G.textPanel.ShowText("Вы ошиблись с прошлым диагнозом. Вам выписан штраф");
+        yield return new WaitForSeconds(4);
+    }
+
+    private IEnumerator NextDayCoroutine()
+    {
+
         AudioManager.Instance.PlayRandomMusic();
 
         session.curentDay++;
-
-        TutorialInfo tutorial = balanceManager.Tutorial(session.curentDay);
-
-        if (tutorial != null && G.tutorialIsActive && G.tutorialProgress < session.curentDay) {
-            yield return TutorialController.Instance.TutorialPlay(tutorial);
-        }
-
         dailyPrize = 0;
         dailyFine = 0;
         dailyPacients = 0;
+
+        doorAnimator.HideInstantly();
+
+        G.verdictController.Hide();
         statsPanel.Hide();
-        NewPacient();
+
+        if (session.curentDay == 4 || session.curentDay == 2) yield return FourCoroutine();
+
+        TutorialInfo tutorial = balanceManager.Tutorial(session.curentDay);
+
+
+
+        if (tutorial != null && G.tutorialIsActive && G.tutorialProgress < session.curentDay)
+        {
+            G.tutorialProgress = session.curentDay;
+
+            if (session.curentDay == 6) { 
+                G.tutorialIsActive = false;
+            }
+
+            G.verdictController.SetVariants(tutorial.diagnosis.diseases);
+
+            // Используйте переменную из TutorialController
+            TutorialController.Instance.tutorialIsGoing = true;
+
+            DoorAnimator.Instance.HideInstantly();
+
+            if (tutorial.diagnosis != null)
+            {
+
+                EyeGenerator.Instance.GenerateEye(tutorial.diagnosis);
+                doorAnimator.AnimateSprite(false);
+                AudioManager.Instance.PlayDoorSound();
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
+            tutorController.StartTutorial(tutorial);
+
+            while (TutorialController.Instance.tutorialIsGoing)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            //doorAnimator.AnimateSprite(true);
+            yield return new WaitForSeconds(0.5f);
+            TutorialController.Instance.tutorialIsGoing = false;
+
+        }
+        else
+        {
+            NewPacient();
+        }
+
+
+        Debug.Log("end of tutor");
+
 
         if (timer != null)
         {
-            timer.ResetAndStartTimer();
+            if (session.curentDay == 1) timer.ResetAndStartTimer(20);
+            else if (session.curentDay < 4) timer.ResetAndStartTimer(30);
+            else timer.ResetAndStartTimer();
         }
+
     }
+
 
     void NewPacient()
     {
-        curentDiagnosis = GenerateDiagnosis(balanceManager.AvailableDiseases(session.curentDay), balanceManager.DiseasesNum(session.curentDay));
 
+
+        Debug.Log("New pacient");
+        // Проверяем через TutorialController
+        if (TutorialController.Instance.tutorialIsGoing)
+        {
+            TutorialController.Instance.StopTutorial();
+            TutorialController.Instance.tutorialIsGoing = false;
+        }
+
+        curentDiagnosis = GenerateDiagnosis(balanceManager.AvailableDiseases(session.curentDay), balanceManager.DiseasesNum(session.curentDay));
         G.curentDiagnosis = curentDiagnosis;
 
         eyeGenerator.GenerateEye(curentDiagnosis);
         AudioManager.Instance.PlayDoorSound();
-        doorAnimator.AnimateSprite(false);
+
+        // Проверка перед анимацией
+        if (doorAnimator != null && doorAnimator.targetTransform != null)
+        {
+            doorAnimator.AnimateSprite(false);
+        }
+        else
+        {
+            Debug.Log("Animator null");
+        }
+
     }
+
 
     Diagnosis GenerateDiagnosis(List<Diseases> availableDiseases1, int diseasesNum)
     {
-        Diagnosis diagnosis = new Diagnosis();
-        List<Diseases> availableDiseases = new List<Diseases>(availableDiseases1);
+        Diagnosis diagnosis = new Diagnosis(); // Always create a new instance
 
+        // Add null checks for input parameters
+        if (availableDiseases1 == null || availableDiseases1.Count == 0)
+        {
+            Debug.LogWarning("No available diseases provided, returning empty diagnosis");
+            return diagnosis;
+        }
+
+        List<Diseases> availableDiseases = new List<Diseases>(availableDiseases1);
         G.verdictController.SetVariants(availableDiseases);
 
         int n = UnityEngine.Random.Range(0, diseasesNum + 1);
@@ -133,7 +238,7 @@ public class GameProcess : MonoBehaviour
 
         List<Diseases> selectedDiseases = new List<Diseases>();
 
-        // Сначала выбираем все болезни
+        // Your existing disease selection logic...
         for (int i = 0; i < n; i++)
         {
             if (availableDiseases.Count == 0)
@@ -145,16 +250,14 @@ public class GameProcess : MonoBehaviour
             availableDiseases.RemoveAt(index);
         }
 
-        // Затем применяем их к диагнозу и обрабатываем конфликты
+        // Your existing disease application logic...
         foreach (Diseases disease in selectedDiseases)
         {
             Debug.Log($"Applying disease: {disease}");
             diagnosis.diseases[(int)disease] = true;
 
-            // Обрабатываем конфликтующие болезни
             if (disease == Diseases.LongRange)
             {
-                // Убираем противоположную болезнь если она была выбрана
                 if (selectedDiseases.Contains(Diseases.ShortRange))
                 {
                     diagnosis.diseases[(int)Diseases.ShortRange] = false;
@@ -162,7 +265,6 @@ public class GameProcess : MonoBehaviour
             }
             else if (disease == Diseases.ShortRange)
             {
-                // Убираем противоположную болезнь если она была выбрана
                 if (selectedDiseases.Contains(Diseases.LongRange))
                 {
                     diagnosis.diseases[(int)Diseases.LongRange] = false;
@@ -170,30 +272,48 @@ public class GameProcess : MonoBehaviour
             }
         }
 
-
-
         return diagnosis;
     }
 
+
     public void SendDiagnosis(Diagnosis diagnosis)
     {
-        dailyPacients++;
-
-        // Используем баланс-менеджер для расчета награды
-        int reward = balanceManager.CalculateDiagnosisReward(diagnosis, curentDiagnosis);
-
-        if (reward >= 0)
+        if (!TutorialController.Instance.tutorialIsGoing)
         {
-            dailyPrize += reward;
-        }
-        else
-        {
-            dailyFine += reward; // reward уже отрицательный
-        }
+            dailyPacients++;
 
-        NewPacient();
+            // Используем баланс-менеджер для расчета награды
+            int reward = balanceManager.CalculateDiagnosisReward(diagnosis, curentDiagnosis, ref error);
+
+            if (reward >= 0)
+            {
+                dailyPrize += reward;
+            }
+            else
+            {
+                dailyFine += reward; // reward уже отрицательный
+            }
+        }
+        StartCoroutine(costCor());
+
     }
 
+    IEnumerator costCor()
+    {
+        doorAnimator.AnimateSprite(true);
+        yield return new WaitForSeconds(0.5f);
 
+        if (error) StartCoroutine(ErrorCoroutine());
+
+        NewPacient();
+
+    }
+
+    IEnumerator costCor2()
+    {
+        yield return new WaitForSeconds(0.5f);
+        NewPacient();
+
+    }
 }
 

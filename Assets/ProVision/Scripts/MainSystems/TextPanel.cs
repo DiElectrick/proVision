@@ -11,12 +11,17 @@ public class TextPanel : MonoBehaviour
 
     [Header("Settings")]
     public float lettersPerSecond = 30f;
-    public float hideDelay = 2f;
+    public const float baseHideDelay = 2f;
 
     private string currentText;
     private Coroutine showTextCoroutine;
     private Coroutine hideCoroutine;
     private CanvasGroup panelCanvasGroup;
+
+    private void Awake()
+    {
+        G.textPanel = this;
+    }
 
     void Start()
     {
@@ -33,7 +38,7 @@ public class TextPanel : MonoBehaviour
         panel.SetActive(false);
     }
 
-    public void ShowText(string text)
+    public void ShowText(string text, float hideDelay = baseHideDelay)
     {
         // Отменяем предыдущие корутины
         if (showTextCoroutine != null) StopCoroutine(showTextCoroutine);
@@ -47,10 +52,10 @@ public class TextPanel : MonoBehaviour
 
         // Запускаем показ текста
         currentText = text;
-        showTextCoroutine = StartCoroutine(ShowTextLetterByLetter(text));
+        showTextCoroutine = StartCoroutine(ShowTextLetterByLetter(text, hideDelay));
     }
 
-    private IEnumerator ShowTextLetterByLetter(string text)
+    private IEnumerator ShowTextLetterByLetter(string text, float hideDelay = baseHideDelay)
     {
         textDisplay.text = "";
 
@@ -66,10 +71,10 @@ public class TextPanel : MonoBehaviour
         showTextCoroutine = null;
 
         // Запускаем скрытие с задержкой
-        hideCoroutine = StartCoroutine(HideAfterDelay());
+        hideCoroutine = StartCoroutine(HideAfterDelay(hideDelay));
     }
 
-    private IEnumerator HideAfterDelay()
+    private IEnumerator HideAfterDelay(float hideDelay)
     {
         yield return new WaitForSeconds(hideDelay);
         Hide();
@@ -109,7 +114,7 @@ public class TextPanel : MonoBehaviour
 
             // Перезапускаем таймер скрытия
             if (hideCoroutine != null) StopCoroutine(hideCoroutine);
-            hideCoroutine = StartCoroutine(HideAfterDelay());
+            hideCoroutine = StartCoroutine(HideAfterDelay(baseHideDelay));
         }
     }
 

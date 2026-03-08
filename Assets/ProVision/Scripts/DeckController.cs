@@ -64,7 +64,7 @@ public class DeckController : MonoBehaviour
         }
         else
         {
-            answer = G.curentDiagnosis.diseases[(int)Diseases.Focus] ? falseDic[deckLetter] : trueDic[deckLetter];
+            answer = G.curentDiagnosis.diseases[(int)Diseases.Double] ? falseDic[deckLetter] : trueDic[deckLetter];
         }
         Debug.Log(answer);
 

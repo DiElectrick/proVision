@@ -79,8 +79,8 @@ public class BalanceManager : MonoBehaviour
 
     public int DiseasesNum(int dayN)
     {
-        if (dayN <= 6) return 1;
-        else return 2;
+        if (dayN <= 6) return balanceData.daysData[dayN - 1].maxDiseasesNum;
+        else return balanceData.daysData[5].maxDiseasesNum;
     }
 
     private void InitializeQuotaSystem()

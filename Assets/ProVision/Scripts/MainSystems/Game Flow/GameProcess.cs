@@ -151,6 +151,7 @@ public class GameProcess : MonoBehaviour
             {
 
                 EyeGenerator.Instance.GenerateEye(tutorial.diagnosis);
+                G.curentDiagnosis = tutorial.diagnosis;
                 doorAnimator.AnimateSprite(false);
                 AudioManager.Instance.PlayDoorSound();
             }
@@ -203,6 +204,8 @@ public class GameProcess : MonoBehaviour
         curentDiagnosis = GenerateDiagnosis(balanceManager.AvailableDiseases(session.curentDay), balanceManager.DiseasesNum(session.curentDay));
         G.curentDiagnosis = curentDiagnosis;
 
+        
+
         eyeGenerator.GenerateEye(curentDiagnosis);
         AudioManager.Instance.PlayDoorSound();
 
@@ -234,7 +237,7 @@ public class GameProcess : MonoBehaviour
         G.verdictController.SetVariants(availableDiseases);
 
         int n = UnityEngine.Random.Range(0, diseasesNum + 1);
-        n = Mathf.Min(n, availableDiseases.Count);
+       // n = Mathf.Min(n, availableDiseases.Count);
 
         List<Diseases> selectedDiseases = new List<Diseases>();
 

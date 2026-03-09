@@ -41,7 +41,7 @@ public class ObjectDragger : MonoBehaviour
 
     void TrySelectObject()
     {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, interactableLayer);
 
         if (hit.collider != null)

@@ -39,7 +39,8 @@ public class GameProcess : MonoBehaviour
     private void Start()
     {
         G.process = this;
-        session = G.curentSession;
+        session = new GameSession();
+        G.curentSession = session;
         timer = GetComponent<Timer>();
         balanceManager = GetComponent<BalanceManager>();
         eyeGenerator = GetComponent<EyeGenerator>();
@@ -47,11 +48,7 @@ public class GameProcess : MonoBehaviour
         curentEye = eyeGenerator.curentEye.transform;
 
 
-        if (session == null)
-        {
-            session = new GameSession();
-            G.curentSession = session;
-        }
+
 
         if (timer != null)
         {
@@ -87,7 +84,7 @@ public class GameProcess : MonoBehaviour
         statsPanel.Show();
         statsPanel.ShowStats(session.curentDay, dailyPacients, dailyPrize, dailyFine,
                            session.curentMoney, quotaInfo.daysUntilNextQuota, quotaInfo.currentQuota);
-        
+
         StartCoroutine(costCor2());
 
     }
@@ -136,7 +133,8 @@ public class GameProcess : MonoBehaviour
         {
             G.tutorialProgress = session.curentDay;
 
-            if (session.curentDay == 6) { 
+            if (session.curentDay == 6)
+            {
                 G.tutorialIsActive = false;
             }
 
@@ -204,7 +202,7 @@ public class GameProcess : MonoBehaviour
         curentDiagnosis = GenerateDiagnosis(balanceManager.AvailableDiseases(session.curentDay), balanceManager.DiseasesNum(session.curentDay));
         G.curentDiagnosis = curentDiagnosis;
 
-        
+
 
         eyeGenerator.GenerateEye(curentDiagnosis);
         AudioManager.Instance.PlayDoorSound();
@@ -237,7 +235,7 @@ public class GameProcess : MonoBehaviour
         G.verdictController.SetVariants(availableDiseases);
 
         int n = UnityEngine.Random.Range(0, diseasesNum + 1);
-       // n = Mathf.Min(n, availableDiseases.Count);
+        // n = Mathf.Min(n, availableDiseases.Count);
 
         List<Diseases> selectedDiseases = new List<Diseases>();
 

@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip[] musicTracks;
     [SerializeField] private float fadeDuration = 1f;
 
+    float musicVolume = 0.5f;
+    float sfxVolume = 0.5f;
+
     [Header("UI Sounds")]
     public AudioClip paperShowSound;
     public AudioClip buttonClickSound;
@@ -19,25 +22,30 @@ public class AudioManager : MonoBehaviour
     public AudioClip timerSound;
     public AudioClip loseSound;
 
+    public AudioClip clockSound;
+
     private AudioClip currentMusic;
     private bool isMusicPlaying = false;
     private Coroutine fadeCoroutine;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //   // DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void Start()
     {
+
+        SetMusicVolume(0.5f);
         // Автоматически начинаем музыку при старте
         if (musicTracks.Length > 0)
         {
@@ -104,11 +112,11 @@ public class AudioManager : MonoBehaviour
         // Плавно увеличиваем громкость
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            musicSource.volume = Mathf.Lerp(0f, 1f, t / fadeDuration);
+            musicSource.volume = Mathf.Lerp(0f, musicVolume, t / fadeDuration);
             yield return null;
         }
 
-        musicSource.volume = 1f;
+        musicSource.volume = musicVolume;
     }
 
     private IEnumerator FadeOutMusic()
@@ -145,10 +153,19 @@ public class AudioManager : MonoBehaviour
     // Для UI звуков
     public void PlayUIShow() => PlaySFX(paperShowSound);
     public void PlayDoorSound() => PlaySFX(doorSound);
-    public void PlayTimerSound() => PlaySFX(timerSound);
+    public void PlayTimerSound() => PlaySFX(timerSound, 0.02f);
     public void PlayButtonClick() => PlaySFX(buttonClickSound);
     public void PlayLoseSound() => PlaySFX(loseSound);
+    public void PlayClock(float time) {
+        StartCoroutine(ClockSoundCoroutine(time));
+    }
 
+    IEnumerator ClockSoundCoroutine(float per) {
+
+        PlaySFX(clockSound);
+        yield return new WaitForSeconds(per);
+        sfxSource.Stop();
+    }
 
     // Для общих SFX
     public void PlaySFX(AudioClip clip, float volume = 1f)
@@ -163,17 +180,25 @@ public class AudioManager : MonoBehaviour
 
     #region Volume Control
 
-    public void SetMusicVolume(float volume) => musicSource.volume = volume;
-    public void SetSFXVolume(float volume) => sfxSource.volume = volume;
+    public void SetMusicVolume(float volume)
+    {
 
+        musicVolume = volume;
+        musicSource.volume = volume;
+    }
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = volume;
+        sfxSource.volume = volume;
+    }
     public float GetMusicVolume()
     {
-        return musicSource.volume;
+        return musicVolume;
     }
 
     public float GetSFXVolume()
     {
-        return sfxSource.volume;
+        return sfxVolume;
     }
 
     #endregion

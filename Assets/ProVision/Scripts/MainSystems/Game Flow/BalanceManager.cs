@@ -74,13 +74,14 @@ public class BalanceManager : MonoBehaviour
     }
 
     public TutorialInfo Tutorial(int dayN) { 
+        if(dayN > balanceData.daysData.Count)return null;
         return balanceData.daysData[dayN-1].tutorialInfo;
     }
 
     public int DiseasesNum(int dayN)
     {
-        if (dayN <= 6) return balanceData.daysData[dayN - 1].maxDiseasesNum;
-        else return balanceData.daysData[5].maxDiseasesNum;
+        if (dayN <= balanceData.daysData.Count) return balanceData.daysData[dayN - 1].maxDiseasesNum;
+        else return balanceData.daysData[balanceData.daysData.Count-1].maxDiseasesNum;
     }
 
     private void InitializeQuotaSystem()

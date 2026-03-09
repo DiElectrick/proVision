@@ -1,9 +1,9 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private const float baseRoundTime = 60f;
+    [SerializeField] private float baseRoundTime = 60f;
     [SerializeField] float soundTime = 10f;
     [SerializeField] private TextMeshProUGUI timerText;
 
@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        ResetTimer();
+        //ResetTimer();
     }
 
     private void Update()
@@ -26,9 +26,10 @@ public class Timer : MonoBehaviour
             currentTime -= Time.deltaTime;
             UpdateTimerDisplay();
 
-            if (currentTime <= soundTime && !isTimerSounded) {
+            if (currentTime <= soundTime && !isTimerSounded)
+            {
                 isTimerSounded = true;
-                AudioManager.Instance.PlayTimerSound();
+                AudioManager.Instance.PlayClock(soundTime-0.5f);
             }
 
             if (currentTime <= 0)
@@ -57,14 +58,14 @@ public class Timer : MonoBehaviour
         isRunning = false;
     }
 
-    public void ResetTimer(float roundTime = baseRoundTime)
+    public void ResetTimer(float roundTime = 60)
     {
         currentTime = roundTime;
         isTimerSounded = false;
         UpdateTimerDisplay();
     }
 
-    public void ResetAndStartTimer(float roundTime = baseRoundTime)
+    public void ResetAndStartTimer(float roundTime = 60)
     {
         ResetTimer(roundTime);
         StartTimer();

@@ -347,14 +347,15 @@ MonoBehaviour:
   musicSource: {fileID: 28507184}
   sfxSource: {fileID: 28507183}
   musicTracks:
-  - {fileID: 8300000, guid: 26513d72d22d624419e0db8ae8fcf309, type: 3}
-  - {fileID: 8300000, guid: 656cfd0b6f7158740a212cbdca2d4a7e, type: 3}
+  - {fileID: 8300000, guid: 10111dad8a9172649af123f1788a6aa1, type: 3}
+  - {fileID: 8300000, guid: 6120a13a5310dba4ab4d3aa8603ac4f4, type: 3}
   fadeDuration: 1
   paperShowSound: {fileID: 8300000, guid: 634a9c94cfcf601429fe6dd503ba5e80, type: 3}
   buttonClickSound: {fileID: 0}
   doorSound: {fileID: 8300000, guid: 904af9ede9325fe4aa7dedfab76ea71e, type: 3}
   timerSound: {fileID: 8300000, guid: 239af77905aad6342bcb87f4e98f4d33, type: 3}
   loseSound: {fileID: 8300000, guid: ca2cdce572a3883488a0739248f79798, type: 3}
+  clockSound: {fileID: 8300000, guid: 9f59f1cd237556f40aeaaea1cb7e2138, type: 3}
 --- !u!4 &28507186
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,7 +1559,7 @@ MonoBehaviour:
   m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40e0fba799d0e846b44fdcbd7fb1ddc, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -8031785157721803048, guid: a40e0fba799d0e846b44fdcbd7fb1ddc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1624,7 +1625,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &291342789
@@ -3813,6 +3814,7 @@ GameObject:
   - component: {fileID: 723223363}
   - component: {fileID: 723223365}
   - component: {fileID: 723223364}
+  - component: {fileID: 723223366}
   m_Layer: 5
   m_Name: Dialogue Panel
   m_TagString: Untagged
@@ -3853,8 +3855,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 0.23529412}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3878,6 +3880,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723223362}
   m_CullTransparentMesh: 1
+--- !u!225 &723223366
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723223362}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &736151597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,6 +4396,7 @@ GameObject:
   - component: {fileID: 900804592}
   - component: {fileID: 900804594}
   - component: {fileID: 900804593}
+  - component: {fileID: 900804595}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4508,6 +4523,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900804591}
   m_CullTransparentMesh: 1
+--- !u!225 &900804595
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900804591}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &934608880
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,9 +4633,9 @@ RectTransform:
   - {fileID: 1838561344}
   - {fileID: 490446169}
   - {fileID: 252213387}
-  - {fileID: 1888111533}
   - {fileID: 436508656}
   - {fileID: 585922802}
+  - {fileID: 1888111533}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5687,7 +5714,7 @@ MonoBehaviour:
   m_text: "\u041F\u0430\u0443\u0437\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40e0fba799d0e846b44fdcbd7fb1ddc, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -8031785157721803048, guid: a40e0fba799d0e846b44fdcbd7fb1ddc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5753,7 +5780,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1122235117
@@ -8812,6 +8839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005baa04356a8d840b1d4981dbeac0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  baseRoundTime: 60
   soundTime: 10
   timerText: {fileID: 490446167}
 --- !u!114 &1623803867
@@ -10187,7 +10215,7 @@ MonoBehaviour:
   m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40e0fba799d0e846b44fdcbd7fb1ddc, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -8031785157721803048, guid: a40e0fba799d0e846b44fdcbd7fb1ddc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10253,7 +10281,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1876679275

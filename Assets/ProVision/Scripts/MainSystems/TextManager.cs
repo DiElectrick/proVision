@@ -10,16 +10,19 @@ public class TextManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            LoadTexts();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+        LoadTexts();
+
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //    LoadTexts();
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     void LoadTexts()

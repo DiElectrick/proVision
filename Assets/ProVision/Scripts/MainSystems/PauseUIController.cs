@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PauseUIController : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class PauseUIController : MonoBehaviour
 
         musicScrollbar.value = AudioManager.Instance.GetMusicVolume();
         sfxScrollbar.value = AudioManager.Instance.GetSFXVolume();
+
+        //musicScrollbar.value = 0.5f;
+        //sfxScrollbar.value = 0.5f;
 
         musicScrollbar.onValueChanged.AddListener(MusicSetValue);
         sfxScrollbar.onValueChanged.AddListener(SFXSetValue);

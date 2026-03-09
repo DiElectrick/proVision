@@ -1,6 +1,6 @@
 using DG.Tweening;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DoorAnimator : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class DoorAnimator : MonoBehaviour
 
     private void Awake()
     {
-            Instance = this;
+        Instance = this;
     }
 
     // Словарь для хранения исходной прозрачности объектов

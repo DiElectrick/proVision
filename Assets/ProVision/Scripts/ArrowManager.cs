@@ -33,16 +33,19 @@ public class ArrowManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializeCanvasGroups();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+        InitializeCanvasGroups();
+
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //    InitializeCanvasGroups();
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void InitializeCanvasGroups()

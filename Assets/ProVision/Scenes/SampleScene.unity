@@ -4636,6 +4636,7 @@ RectTransform:
   - {fileID: 436508656}
   - {fileID: 585922802}
   - {fileID: 1888111533}
+  - {fileID: 1317879089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6804,6 +6805,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306852238}
   m_CullTransparentMesh: 1
+--- !u!1 &1317879088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1317879089}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1317879089
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317879088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 934608884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1328422274
 GameObject:
   m_ObjectHideFlags: 0
@@ -8827,6 +8863,9 @@ MonoBehaviour:
   timer: {fileID: 0}
   statsPanel: {fileID: 252213391}
   doorAnimator: {fileID: 128407959}
+  indSpawn: {fileID: 1317879089}
+  addInd: {fileID: 1209521362524518752, guid: 8374e4bc78336ac41a0005696bba8a90, type: 3}
+  fineInd: {fileID: 4724919789279463119, guid: 93fda0ad5e4afe14980789d813c9d3d7, type: 3}
 --- !u!114 &1623803866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8857,10 +8896,10 @@ MonoBehaviour:
   dayByQouta: 3
   startQouta: 150
   bonusQuota: 50
-  prize: 15
-  fine: -20
-  neutralPrize: 5
-  neutralFine: -20
+  prize: 3
+  fine: -25
+  neutralPrize: 3
+  neutralFine: -25
   loop: {fileID: 0}
   deck: {fileID: 0}
   lamp: {fileID: 0}

@@ -7,6 +7,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +19,9 @@ public class GameProcess : MonoBehaviour
     [SerializeField] Timer timer;
     [SerializeField] FinalePanelUIController statsPanel;
     [SerializeField] DoorAnimator doorAnimator;
-
+    [SerializeField] Transform indSpawn;
+    [SerializeField] GameObject addInd;
+    [SerializeField] GameObject fineInd;
 
     private int dailyPrize = 0;
     private int dailyFine = 0;
@@ -284,16 +287,19 @@ public class GameProcess : MonoBehaviour
             dailyPacients++;
 
             // Используем баланс-менеджер для расчета награды
-            int reward = balanceManager.CalculateDiagnosisReward(diagnosis, curentDiagnosis, ref error);
+            int reward, fine;
+            (reward, fine) = balanceManager.CalculateDiagnosisReward(diagnosis, curentDiagnosis, ref error);
 
-            if (reward >= 0)
+            if (!error)
             {
                 dailyPrize += reward;
+                Instantiate(addInd, indSpawn).GetComponent<TextMeshProUGUI>().text = "+"+reward.ToString();
             }
-            else
-            {
-                dailyFine += reward; // reward уже отрицательный
+            else { 
+                dailyFine += fine;
+                Instantiate(fineInd, indSpawn).GetComponent<TextMeshProUGUI>().text = fine.ToString();
             }
+
         }
         StartCoroutine(costCor());
 

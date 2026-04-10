@@ -13,7 +13,8 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class DayBalanceData {
+public class DayBalanceData
+{
     public List<Diseases> addedDiseases = new List<Diseases>();
     public TutorialInfo tutorialInfo;
     public int maxDiseasesNum;
@@ -61,27 +62,31 @@ public class BalanceManager : MonoBehaviour
         InitializeQuotaSystem();
     }
 
-    public List<Diseases> AvailableDiseases(int dayN) { 
-        List<Diseases> list = new List<Diseases>(balanceData.daysData[dayN-1 < balanceData.daysData.Count ? dayN-1 : balanceData.daysData.Count - 1].addedDiseases);
+    public List<Diseases> AvailableDiseases(int dayN)
+    {
+        List<Diseases> list = new List<Diseases>(balanceData.daysData[dayN - 1 < balanceData.daysData.Count ? dayN - 1 : balanceData.daysData.Count - 1].addedDiseases);
         return list;
     }
 
-    public int MaxDiseasesNum(int dayN) {
+    public int MaxDiseasesNum(int dayN)
+    {
         if (dayN < balanceData.daysData.Count) return balanceData.daysData[dayN - 1].maxDiseasesNum;
-        else {
+        else
+        {
             return balanceData.daysData[balanceData.daysData.Count - 1].maxDiseasesNum;
         }
     }
 
-    public TutorialInfo Tutorial(int dayN) { 
-        if(dayN > balanceData.daysData.Count)return null;
-        return balanceData.daysData[dayN-1].tutorialInfo;
+    public TutorialInfo Tutorial(int dayN)
+    {
+        if (dayN > balanceData.daysData.Count) return null;
+        return balanceData.daysData[dayN - 1].tutorialInfo;
     }
 
     public int DiseasesNum(int dayN)
     {
         if (dayN <= balanceData.daysData.Count) return balanceData.daysData[dayN - 1].maxDiseasesNum;
-        else return balanceData.daysData[balanceData.daysData.Count-1].maxDiseasesNum;
+        else return balanceData.daysData[balanceData.daysData.Count - 1].maxDiseasesNum;
     }
 
     private void InitializeQuotaSystem()
@@ -110,7 +115,7 @@ public class BalanceManager : MonoBehaviour
         daysUntilNextQuota = dayByQouta;
     }
 
-    public int CalculateDiagnosisReward(Diagnosis playerDiagnosis, Diagnosis correctDiagnosis, ref bool error)
+    public (int, int) CalculateDiagnosisReward(Diagnosis playerDiagnosis, Diagnosis correctDiagnosis, ref bool error)
     {
         int patientPrize = 0;
         int patientFine = 0;
@@ -153,8 +158,8 @@ public class BalanceManager : MonoBehaviour
 
         if (patientFine != 0) error = true;
         else error = false;
-
-            return patientPrize + patientFine; // возвращаем общий результат
+        
+        return (patientPrize, patientFine); // возвращаем общий результат
     }
 
     public (int currentQuota, int daysUntilNextQuota) GetQuotaInfo()
